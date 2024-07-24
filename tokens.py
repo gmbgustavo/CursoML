@@ -1,13 +1,14 @@
-"""Tokens manuais"""
-
-from transformers import AutoTokenizer, AutoModel
-
-nome_modelo = "FacebookAI/xlm-roberta-base"
-
-modelo = AutoModel.from_pretrained(nome_modelo)
-tokenizador = AutoTokenizer.from_pretrained(nome_modelo)
+from transformers import pipeline
 
 
+modelo = pipeline('fill-mask')
+
+frase = 'I would rather <mask> than losing my life.'
+
+respostas = modelo(frase)
+
+for resposta in respostas:
+    frase = resposta['token_str']
 
 
 
